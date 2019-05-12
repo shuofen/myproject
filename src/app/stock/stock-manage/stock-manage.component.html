@@ -28,7 +28,7 @@
           {{stock.price}}
         </td>
         <td>
-          {{stock.rating}}
+          <app-stars [rating]="stock.rating"></app-stars>
         </td>
         <td>
           <a class="btn btn-warning btn-xs" style="margin-right:5px"> <span class="glyphicon glyphicon-pencil"></span>修改</a>
