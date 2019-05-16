@@ -1,4 +1,7 @@
+import { StockService } from './../stock.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Stock } from '../stock.service';
 
 @Component({
   selector: 'app-stock-manage',
@@ -8,33 +11,19 @@ import { Component, OnInit } from '@angular/core';
 export class StockManageComponent implements OnInit {
   private stocks: Array<Stock>;
 
-  constructor() { }
+  constructor(public router: Router, public stockService: StockService) { }
 
   ngOnInit() {
-    this.stocks = [
-      new Stock(1, "第一只股票", 3, 2.5, "这是第一只股票描述", ["IT", "金融"]),
-      new Stock(2, "第二只股票", 3, 1.5, "这是第二只股票描述", ["IT", "金融"]),
-      new Stock(3, "第三只股票", 3, 4.5, "这是第三只股票描述", ["IT", "金融"]),
-      new Stock(4, "第四只股票", 3, 3.5, "这是第四只股票描述", ["IT", "金融"]),
-      new Stock(5, "第五只股票", 3, 2.5, "这是第五只股票描述", ["IT", "金融"]),
-      new Stock(6, "第六只股票", 3, 4.5, "这是第六只股票描述", ["IT", "金融"]),
-      new Stock(7, "第七只股票", 3, 1.5, "这是第七只股票描述", ["IT", "金融"]),
-      new Stock(8, "第八只股票", 3, 2.5, "这是第八只股票描述", ["IT", "金融"]),
-    ]
+    this.stocks = this.stockService.getStocks();
   }
 
-}
+  create() {
+    this.router.navigateByUrl("/stock/0")
+  }
 
-
-export class Stock {
-  constructor(
-    public id: number,
-    public name: string,
-    public price: number,
-    public rating: number,
-    public desc: string,
-    public categories: Array<string>
-  ) {
-
+  update(stock: Stock) {
+    this.router.navigateByUrl("/stock/" + stock.id);
   }
 }
+
+
