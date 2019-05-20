@@ -2,6 +2,7 @@ import { StockService } from './stock/stock.service';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -13,6 +14,7 @@ import { StockManageComponent } from './stock/stock-manage/stock-manage.componen
 import { StarsComponent } from './stars/stars.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StockFormComponent } from './stock/stock-form/stock-form.component';
+import { StockFilterPipe } from './stock/stock-filter.pipe';
 
 const routeConfig: Routes = [
   { path: "", redirectTo: "dashboard", pathMatch: "full" },//访问根目录重定向到该页面；
@@ -32,10 +34,13 @@ const routeConfig: Routes = [
     StockManageComponent,
     StarsComponent,
     DashboardComponent,
-    StockFormComponent
+    StockFormComponent,
+    StockFilterPipe
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routeConfig)
   ],
   providers: [StockService],
